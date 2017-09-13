@@ -1,0 +1,81 @@
+<alert *ngIf="message">
+    {{message}}
+</alert>
+
+<section>
+    <div class="container">
+        <div class="row">
+            <!-- LOGIN -->
+            <div class="col-md-6 col-sm-6">
+                <!-- login form -->
+                <form action="#" method="post" class="sky-form boxed">
+                    <header>Login</header>
+                    
+                    <fieldset>
+                        <section>
+                            <label class="input">
+                                <i class="icon-append fa fa-envelope"></i>
+                                <input required type="email" placeholder="Email...">
+                            </label>
+                        </section>
+                        
+                        <section>
+                            <label class="input">
+                                <i class="icon-append fa fa-lock"></i>
+                                <input required type="password" placeholder="Senha...">
+                                <b class="tooltip tooltip-bottom-right">Números, letras e caracteres especiais</b>
+                            </label>
+                            <div class="note"><a href="#">Esqueceu sua senha?</a></div>
+                        </section>
+                    </fieldset>
+                    <footer>
+                        <button type="submit" class="button">Entrar</button>
+                    </footer>
+                </form>
+                <!-- /login form -->
+            </div>
+            <!-- /LOGIN -->
+
+            <!-- REGISTER -->
+            <div class="col-md-6 col-sm-6">
+                <!-- registration form -->
+                <form action="" class="sky-form boxed" (submit)="redirectToDashboard()" [formGroup]="form">
+                    <header>Cadastre-se</header>
+                    
+                    <fieldset>
+                        <div class="row">
+                            <section class="col col-md-6">
+                                <label class="input" [ngClass]="{'state-error' : form.controls.email.hasError('required')}">
+                                    <i class="icon-append fa fa-envelope"></i>
+                                    <input required type="email" name="email" formControlName="email" placeholder="Email*">
+                                    <b class="tooltip tooltip-bottom-right">Obrigatório!</b>
+                                </label>
+                                <div class="note note-error">This is a required field.</div>
+                            </section>
+                            
+                            <section class="col col-md-6">
+                                <label class="input">
+                                    <i class="icon-append fa fa-lock"></i>
+                                    <input required type="password" name="password" formControlName="password" placeholder="Senha*">
+                                    <b class="tooltip tooltip-bottom-right">Obrigatório!</b>
+                                </label>
+                            </section>
+                        </div>
+                    </fieldset>
+                        
+                    <fieldset>
+                        <section>
+                            <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Eu aceito os termos de serviço</label>
+                            <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Eu aceito receber notificações por email</label>
+                        </section>
+                    </fieldset>
+                    <footer>
+                        <button [disabled]="!form.valid" type="submit" class="button">Cadastrar</button>
+                    </footer>
+                </form>
+                <!-- /registration form -->
+            </div>
+            <!-- /REGISTER -->
+        </div>
+    </div>
+</section>

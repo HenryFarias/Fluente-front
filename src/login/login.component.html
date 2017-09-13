@@ -1,0 +1,90 @@
+<alert>
+    teste
+</alert>
+
+<section>
+    <div class="container">
+
+        <div class="row">
+        
+            <!-- LOGIN -->
+            <div class="col-md-6 col-sm-6">
+                <!-- login form -->
+                <form action="#" method="post" class="sky-form boxed">
+                    <header>Login</header>
+                    
+                    <fieldset>
+                        <section>
+                            <label class="input">
+                                <i class="icon-append fa fa-envelope"></i>
+                                <input required type="email" placeholder="Email...">
+                            </label>
+                        </section>
+                        
+                        <section>
+                            <label class="input">
+                                <i class="icon-append fa fa-lock"></i>
+                                <input required type="password" placeholder="Senha...">
+                                <b class="tooltip tooltip-bottom-right">Números, letras e caracteres especiais</b>
+                            </label>
+                            <div class="note"><a href="#">Esqueceu sua senha?</a></div>
+                        </section>
+                    </fieldset>
+                    <footer>
+                        <button type="submit" class="button">Entrar</button>
+                    </footer>
+                </form>
+                <!-- /login form -->
+            </div>
+            <!-- /LOGIN -->
+
+            <!-- REGISTER -->
+            <div class="col-md-6 col-sm-6">
+                <form action="" class="sky-form boxed" (submit)="redirectToDashboard()">
+                    <header>Cadastre-se</header>
+                    
+                    <fieldset>
+                        <div class="row">
+                            <section class="col col-md-12">
+                                <ul class="lightbox nomargin-left list-unstyled" data-plugin-options="{&quot;delegate&quot;: &quot;a&quot;, &quot;gallery&quot;: {&quot;enabled&quot;: true}}">
+                                    
+                                    <li class="col-md-6 nomargin-left"><!-- item -->
+                                        <div class="item-box">
+                                            <figure>
+                                                <a [routerLink]="['/login/cadastro/1']" class="item-hover">
+                                                    <span class="overlay color2"></span>
+                                                    <span class="inner">
+                                                        Cadastro <strong>PROFESSOR</strong>
+                                                    </span>
+                                                </a>
+                                                <img class="img-responsive" src="../../public/images/professor.png" width="260" height="260" alt="">
+                                            </figure>
+                                        </div>
+                                    </li>
+
+                                    <li class="col-sm-6"><!-- item -->
+                                        <div class="item-box">
+                                            <figure>
+                                                <a [routerLink]="['/login/cadastro/2']" class="item-hover">
+                                                    <span class="overlay color2"></span>
+                                                    <span class="inner">
+                                                        Cadastro <strong>ALUNO</strong>
+                                                    </span>
+                                                </a>
+                                                <img class="img-responsive" src="../../public/images/aluno.png" width="260" height="260" alt="">
+                                            </figure>
+                                        </div>
+                                    </li>
+
+                                </ul>
+                            </section>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+            <!-- /REGISTER -->
+
+        </div>
+
+    </div>
+</section>

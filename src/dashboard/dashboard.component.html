@@ -1,0 +1,95 @@
+<h1>DASHBOARD</h1>
+
+<modal>
+    <div class="modal-content">   
+        <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">Informações de endereço</h4>
+        </div>
+
+        <div class="modal-body">
+            <alert *ngIf="message">
+                {{message}}
+            </alert>
+            <form action="" class="sky-form" (submit)="saveUser()">
+                <fieldset>
+                    <div class="row">
+                        <section class="col col-md-6">
+                            <label class="input">
+                                <input required name="idioma" [(ngModel)]="user.idioma.name" placeholder="Idioma*" type="text" list="listIdioma">
+                                <datalist id="listIdioma">
+                                    <option *ngFor="let idioma of idiomas" value="{{idioma.name}}"></option>
+                                </datalist>
+                            </label>
+                        </section>
+                        <section class="col col-md-6">
+                            <label class="input">
+                                <input required name="nivel" [(ngModel)]="user.nivel.name" placeholder="Nível*" type="text" list="listNivel">
+                                <datalist id="listNivel">
+                                    <option *ngFor="let nivel of niveis" value="{{nivel.name}}"></option>
+                                </datalist>
+                            </label>
+                        </section>
+                    </div>
+                    <div class="row">
+                        <section class="col col-md-12">
+                            <label class="input">
+                                <i class="icon-append fa fa-hotel"></i>
+                                <input required name="cep" [(ngModel)]="user.endereco.cep" (blur)="viaCep()" type="text" placeholder="CEP">
+                            </label>
+                        </section>
+                    </div>
+                    <div class="row">
+                        <section class="col col-md-6">
+                            <label class="input">
+                                <i class="icon-append fa fa-hotel"></i>
+                                <input required name="rua" [(ngModel)]="user.endereco.rua" type="text" placeholder="Rua*">
+                                <b class="tooltip tooltip-bottom-right">Obrigatório!</b>
+                            </label>
+                        </section>
+                        <section class="col col-md-6">
+                            <label class="input">
+                                <i class="icon-append fa fa-hotel"></i>
+                                <input required name="bairro" [(ngModel)]="user.endereco.bairro" type="text" placeholder="Bairro*">
+                                <b class="tooltip tooltip-bottom-right">Obrigatório!</b>
+                            </label>
+                        </section>
+                    </div>
+                    <div class="row">
+                        <section class="col col-md-6">
+                            <label class="input">
+                                <i class="icon-append fa fa-hotel"></i>
+                                <input required name="cidade" [(ngModel)]="user.endereco.cidade.name" type="text" placeholder="Cidade*">
+                                <b class="tooltip tooltip-bottom-right">Obrigatório!</b>
+                            </label>
+                        </section>
+                        <section class="col col-md-6">
+                            <label class="input">
+                                <i class="icon-append fa fa-hotel"></i>
+                                <input required name="estado" [(ngModel)]="user.endereco.cidade.estado.name" type="text" placeholder="Estado*">
+                                <b class="tooltip tooltip-bottom-right">Obrigatório!</b>
+                            </label>
+                        </section>
+                    </div>
+                    <div class="row">
+                        <section class="col col-md-6">
+                            <label>
+                                Escolha a proximidade das notificações de eventos compatíveis que deseja receber. Por padrão será escolhido o seu bairro.
+                            </label>
+                        </section>
+                        <section class="col col-md-6">
+                            <label class="input">
+                                <input name="notificacoes" [(ngModel)]="user.notificacao.name" placeholder="Notificações" type="text" list="listNotificacao">
+                                <datalist id="listNotificacao">
+                                    <option *ngFor="let notificacao of notificacoes" value="{{notificacao.name}}"></option>
+                                </datalist>
+                            </label>
+                        </section>
+                    </div>
+                </fieldset>
+                <footer>
+                    <button type="submit" class="button">Finalizar</button>
+                </footer>
+            </form>
+        </div>
+    </div>
+</modal>
