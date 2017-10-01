@@ -9,7 +9,7 @@ declare let $: any;
 export class AlertComponent implements OnInit {
 
     @Input()
-    public action = 'success';
+    public action = 'danger';
 
     @ViewChild('alert')
     public divAlert: ElementRef;

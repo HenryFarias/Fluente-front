@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
+import { User } from '../models/user';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -43,6 +44,14 @@ export class AppHttpService {
         let url = this.url;
 
         return this.http.post(url, data).toPromise().then((res) => {
+            return res.json() || {};
+        })
+    }
+
+    autenticate(user: User) {
+        let url = this.url;
+        
+        return this.http.post(url, user).toPromise().then((res) => {
             return res.json() || {};
         })
     }

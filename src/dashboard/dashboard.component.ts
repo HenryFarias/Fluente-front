@@ -37,8 +37,9 @@ export class DashboardComponent {
                 this.niveis = res.data.niveis;
                 this.idiomas = res.data.idiomas;
             });
+
+            this.openModal();
         }
-        this.openModal();
     }
 
     public openModal() {
@@ -51,7 +52,9 @@ export class DashboardComponent {
             sessionStorage.setItem("user", JSON.stringify(this.user));
             this.modal.close();
         }).catch(error => {
-            console.log(error);
+            var erro = error.json();
+            this.message = error.json().error;
+            console.log(erro.error);
         });
     }
 

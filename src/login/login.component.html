@@ -1,5 +1,5 @@
-<alert>
-    teste
+<alert *ngIf="message">
+    {{message}}
 </alert>
 
 <section>
@@ -10,21 +10,21 @@
             <!-- LOGIN -->
             <div class="col-md-6 col-sm-6">
                 <!-- login form -->
-                <form action="#" method="post" class="sky-form boxed">
+                <form action="" (submit)="login()" class="sky-form boxed">
                     <header>Login</header>
                     
                     <fieldset>
                         <section>
                             <label class="input">
                                 <i class="icon-append fa fa-envelope"></i>
-                                <input required type="email" placeholder="Email...">
+                                <input required name="email" [(ngModel)]="user.email" type="email" placeholder="Email...">
                             </label>
                         </section>
                         
                         <section>
                             <label class="input">
                                 <i class="icon-append fa fa-lock"></i>
-                                <input required type="password" placeholder="Senha...">
+                                <input required name="password" [(ngModel)]="user.password" type="password" placeholder="Senha...">
                                 <b class="tooltip tooltip-bottom-right">Números, letras e caracteres especiais</b>
                             </label>
                             <div class="note"><a href="#">Esqueceu sua senha?</a></div>

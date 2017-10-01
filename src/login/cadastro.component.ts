@@ -17,20 +17,20 @@ export class CadastroComponent {
         private httpService: AppHttpService, 
         private router: Router,
         private activatedRoute: ActivatedRoute,
-        private fb: FormBuilder
+        // private fb: FormBuilder
     ) {
-        this.form = this.fb.group({
-            email: ['', Validators.compose([
-                Validators.minLength(5),
-                Validators.maxLength(160),
-                Validators.required,
-            ])],
-            password: ['', Validators.compose([
-                Validators.minLength(4),
-                Validators.maxLength(20),
-                Validators.required
-            ])]
-        });
+        // this.form = this.fb.group({
+        //     email: ['', Validators.compose([
+        //         Validators.minLength(5),
+        //         Validators.maxLength(160),
+        //         Validators.required,
+        //     ])],
+        //     password: ['', Validators.compose([
+        //         Validators.minLength(4),
+        //         Validators.maxLength(20),
+        //         Validators.required
+        //     ])]
+        // });
     }
 
     ngOnInit() {
@@ -38,6 +38,19 @@ export class CadastroComponent {
             this.routeId = params['id'];
         });
         this.user = new User();
+    }
+
+    login() {
+        this.message = null;
+        
+        this.httpService.builder('login').autenticate(this.user).then(() => {
+            this.user.logado = true;
+            sessionStorage.setItem("user", JSON.stringify(this.user));
+            this.router.navigate(['/dashboard']);
+        }).catch(error => {
+            var erro = error.json();
+            this.message = error.json().error;
+        });
     }
 
     redirectToDashboard() {
