@@ -11,6 +11,8 @@ import { ModalComponent } from '../util/modal/modal.component';
 import {Observable} from 'rxjs/Rx';
 import 'rxjs/add/observable/throw';
 
+declare let google: any;
+
 @Component({templateUrl: './dashboard.component.html'})
 export class DashboardComponent {
 
@@ -30,6 +32,17 @@ export class DashboardComponent {
     ) {}
 
     ngOnInit() {
+        
+        var uluru = {lat: -25.363, lng: 131.044};
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 4,
+            center: uluru
+        });
+        var marker = new google.maps.Marker({
+            position: uluru,
+            map: map
+        });
+
         this.user = JSON.parse(sessionStorage.getItem("user"));
         if (!this.user.logado) {
             this.httpService.builder('user').create().then((res) => {
