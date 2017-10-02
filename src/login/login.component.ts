@@ -20,15 +20,15 @@ export class LoginComponent {
     }
 
     login() {
-        this.message = null;
+        //this.message = null;
         
-        this.httpService.builder('login').autenticate(this.user).then(() => {
+        //this.httpService.builder('login').autenticate(this.user).then(() => {
             this.user.logado = true;
             sessionStorage.setItem("user", JSON.stringify(this.user));
             this.router.navigate(['/dashboard']);
-        }).catch(error => {
-            var erro = error.json();
-            this.message = error.json().error;
-        });
+        //}).catch(error => {
+        //    var erro = error.json();
+        //    this.message = error.json().error;
+        //});
     }
 }
