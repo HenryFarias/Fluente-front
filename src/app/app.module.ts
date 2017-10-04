@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { ProductModule } from '../product/product.module';
 import { LoginModule } from '../login/login.module';
 import { DashboardModule } from '../dashboard/dashboard.module';
+import { EventoModule } from '../evento/evento.module';
 import { MessageService } from '../services/message.service';
 
 // Rota de redirecionamento apenas. Redirecionando para a rota de produtos
@@ -22,6 +23,7 @@ const appRoutes: Routes = [
     ProductModule,
     LoginModule,
     DashboardModule,
+    EventoModule,
     HttpModule,
   ],
   declarations: [

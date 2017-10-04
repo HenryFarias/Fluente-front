@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef, QueryList, ViewChildren } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Http } from '@angular/http';
 
@@ -22,8 +22,14 @@ export class DashboardComponent {
     public idiomas: Idioma;
     public message:string = null;
 
+    @ViewChild(ModalComponent) 
+    public modais: QueryList<ModalComponent>;
+
     @ViewChild(ModalComponent)
     public modal: ModalComponent;
+
+    // @ViewChild(ModalComponent)
+    // public modais: QueryList<ModalComponent>;
 
     constructor (
         private httpService: AppHttpService, 
@@ -33,6 +39,13 @@ export class DashboardComponent {
 
     ngOnInit() {
         
+        // this.modais.forEach(el => {
+        //     console.log(el);
+        // });
+
+        console.log(this.modal);
+        console.log(this.modais);
+
         var uluru = {lat: -25.363, lng: 131.044};
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 4,
@@ -56,7 +69,7 @@ export class DashboardComponent {
     }
 
     public openModal() {
-        this.modal.open();
+        this.modais.last.open();
     }
 
     public saveUser() {
