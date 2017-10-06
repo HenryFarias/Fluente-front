@@ -210,15 +210,93 @@
             </div>
         </div>
         <div class="col-md-4">
-            <h1 class="text-center">EVENTOS RELACIONADOS</h1>
+            <h1 class="text-center">EVENTOS</h1>
+            <button (click)="openModalEvento()" type="button" class="button">CRIAR EVENTO</button>
+            <br>
             <div id="map"></div>
         </div>
     </div>
 </div>
 
-<modal>
-    <h4>teste</h4>
-</modal>
+<div id="modalEvento" class="modal fade bs-large-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">   
+            <div class="modal-header">
+                <h4 class="modal-title">Evento</h4>
+            </div>
+    
+            <div class="modal-body">
+                <alert *ngIf="message">
+                    {{message}}
+                </alert>
+
+                <form action="" class="sky-form" (submit)="saveEvento()">
+                    <fieldset>
+                        <div class="row">
+                            <section class="col col-md-6">
+                                <label class="input">
+                                    <i class="icon-append fa fa-hotel"></i>
+                                    <input required name="name" [(ngModel)]="evento.name" type="text" placeholder="Título do evento">
+                                </label>
+                            </section>
+                            <section class="col col-md-6">
+                                <label class="input">
+                                    <i class="icon-append fa fa-hotel"></i>
+                                    <input required name="local" [(ngModel)]="evento.local" type="text" placeholder="Local do evento">
+                                </label>
+                            </section>
+                        </div>
+                        <div class="row">
+                            <section class="col col-md-6">
+                                <label class="input">
+                                    <input required name="nivel" [(ngModel)]="evento.nivel.name" placeholder="Nível*" type="text" list="listNivel">
+                                    <datalist id="listNivel">
+                                        <option *ngFor="let nivel of niveis" value="{{nivel.name}}"></option>
+                                    </datalist>
+                                </label>
+                            </section>
+                            <section class="col col-md-6">
+                                <label class="input">
+                                    <i class="icon-append fa fa-hotel"></i>
+                                    <input required name="duracao" [(ngModel)]="evento.duracao" type="text" placeholder="Duração">
+                                </label>
+                            </section>
+                        </div>
+                        <div class="row">
+                            <section class="col col-md-6">
+                                <label class="input">
+                                    <input required name="professor" [(ngModel)]="evento.user.name" placeholder="Professor" type="text" list="listProfessor">
+                                    <datalist id="listProfessor">
+                                        <option *ngFor="let professor of professores" value="{{professor.name}}"></option>
+                                    </datalist>
+                                </label>
+                            </section>
+                            <section class="col col-md-6">
+                                <label class="input">
+                                    <i class="icon-append fa fa-hotel"></i>
+                                    <input required name="descricao" [(ngModel)]="evento.descricao" type="text" placeholder="Descrição">
+                                </label>
+                            </section>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2 col-sm-4 col-xs-4"></div>
+                            <div class="col-md-5 col-sm-4 col-xs-4">
+                                <label class="radio"><input type="radio" value="publico" name="publico_ou_privado" [(ngModel)]="evento.publico_ou_privado" checked=""><i></i>Público</label>
+                            </div>
+                            <div class="col-md-5 col-sm-8 col-xs-8">
+                                <label class="radio"><input type="radio" value="privado" name="publico_ou_privado" [(ngModel)]="evento.publico_ou_privado"><i></i>Privado</label>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <footer>
+                        <button type="submit" class="button">Finalizar</button>
+                    </footer>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
 
 <modal>
     <div class="modal-content">   

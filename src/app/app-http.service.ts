@@ -64,6 +64,14 @@ export class AppHttpService {
         })
     }
 
+    getAll() {
+        let url = this.url;
+
+        return this.http.get(url).toPromise().then((res) => {
+            return res.json() || {};
+        })
+    }
+
     remove(id: number) {
         let url = this.url + '/' + id;
 

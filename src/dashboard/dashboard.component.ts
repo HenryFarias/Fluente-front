@@ -4,6 +4,7 @@ import { Http } from '@angular/http';
 
 import { AppHttpService } from '../app/app-http.service';
 import { User } from '../models/user';
+import { Evento } from '../models/evento';
 import { Notificacao } from '../models/notificacao';
 import { Nivel } from '../models/nivel';
 import { Idioma } from '../models/idioma';
@@ -12,18 +13,21 @@ import {Observable} from 'rxjs/Rx';
 import 'rxjs/add/observable/throw';
 
 declare let google: any;
+declare let $: any;
 
 @Component({templateUrl: './dashboard.component.html'})
 export class DashboardComponent {
 
     private user: User;
+    private evento: Evento;
     public niveis: Nivel;
+    public professores: User;
     public notificacoes: Notificacao;
     public idiomas: Idioma;
     public message:string = null;
 
-    @ViewChild(ModalComponent) 
-    public modais: QueryList<ModalComponent>;
+    // @ViewChild(ModalComponent) 
+    // public modais: QueryList<ModalComponent>;
 
     @ViewChild(ModalComponent)
     public modal: ModalComponent;
@@ -43,8 +47,7 @@ export class DashboardComponent {
         //     console.log(el);
         // });
 
-        console.log(this.modal);
-        console.log(this.modais);
+        // console.log(this.modais);
 
         var uluru = {lat: -25.363, lng: 131.044};
         var map = new google.maps.Map(document.getElementById('map'), {
@@ -56,6 +59,7 @@ export class DashboardComponent {
             map: map
         });
 
+        this.evento = new Evento();
         this.user = JSON.parse(sessionStorage.getItem("user"));
         if (!this.user.logado) {
             this.httpService.builder('user').create().then((res) => {
@@ -69,7 +73,29 @@ export class DashboardComponent {
     }
 
     public openModal() {
-        this.modais.last.open();
+        this.modal.open();
+    }
+
+    public openModalEvento() {
+        this.evento = new Evento();
+
+        this.httpService.builder('professores').getAll().then((res) => {
+            this.evento.user = res.data.professores;
+            console.log(res);
+        });
+
+
+        $("#modalEvento").modal();
+    }
+
+    public saveEvento() {
+        this.httpService.builder('evento').save(this.evento).then(() => {
+            $("#modalEvento").modal('hide');
+        }).catch(error => {
+            var erro = error.json();
+            this.message = error.json().error;
+            console.log(erro.error);
+        });
     }
 
     public saveUser() {
